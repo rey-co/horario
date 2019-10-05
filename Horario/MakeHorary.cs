@@ -35,25 +35,36 @@ namespace Horario
             }
             return strlist;
         }
-        public string[] getCodeAndMateria(string[] strlist)
+        public string[] getTextMat(string[] strlist, int pos)
         {
             string temcode = string.Empty;
             string tempmateria = string.Empty;
             //string[] tempArrayCode = strlist[0].Split(' ');
-            string[] tempArrayCode = strlist[0].Split(' ');
+            string[] tempArrayCode = strlist[pos].Split(' ');
             
-            for (int i = 0; i < tempArrayCode[0].Length; i++)
+            for (int i = 0; i < tempArrayCode[pos].Length; i++)
             {
-                if (Char.IsNumber(strlist[0].Substring(i, 1), 0))
+                if (Char.IsNumber(strlist[pos].Substring(i, 1), 0))
                 {
-                    temcode += strlist[0].Substring(i, 1);
+                    temcode += strlist[pos].Substring(i, 1);
                 }
                 else
                 {
-                    tempmateria += strlist[0].Substring(i, 1);
+                    tempmateria += strlist[pos].Substring(i, 1);
                 }
             }
             String[] data = {temcode,tempmateria+" "+tempArrayCode[1]};
+            return data;
+        }
+        public string[] getTextNameDoc(string[] strlist, int pos)
+        {
+            string nameDocente = string.Empty;
+            string[] tempArray1 = strlist[1].Split(' ');
+            for (int i = 1; i < tempArray1.Length; i++)
+            {
+                   nameDocente += tempArray1[i]+" ";
+            }
+            String[] data = { tempArray1[0], nameDocente };
             return data;
         }
     }
